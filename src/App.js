@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Pageheader from './Pageheader.js';
+import InputOutputContainer from './InputOutputContainer.js';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +11,9 @@ class App extends Component {
     this.state = {
       currentDate: "",
     }
+
+    this.getHistoricalPriceData = this.getHistoricalPriceData.bind(this);
+    this.analyzeHistoricalPriceData = this.analyzeHistoricalPriceData.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +28,26 @@ class App extends Component {
     let daySuffix = this.getDaySuffix(day);
     document.querySelector('.date-num').innerHTML = day;
     document.querySelector('.date-info').innerHTML = weekDay + ', ' + month + ' ' + daySuffix + " ";
+  }
+
+  getHistoricalPriceData(coinNumerator, coinDenominator, unixTime) {
+    let historicalData = "";
+    $.ajax({
+        type: 'GET',
+        url: "https://min-api.cryptocompare.com/data/histoday?fsym=" +
+        coinNumerator +
+        "&tsym=" +
+        coinDenominator +
+        "&limit=2000&aggregate=1&toTs=" +
+        unixTime,
+        data: '',
+        dataType: 'json', 
+        success: this.analyzeHistoricalPriceData, 
+    });
+}
+
+  analyzeHistoricalPriceData(data) {
+        console.log(data.Data[2000].close);
   }
 
   getMonth(month) {
@@ -153,6 +178,10 @@ class App extends Component {
     return (
       <div className = 'container'>
         <Pageheader />
+        <InputOutputContainer 
+          getHistoricalPriceData = {this.getHistoricalPriceData}
+          currentDate = {this.state.currentDate}
+        />
       </div>
     );
   }

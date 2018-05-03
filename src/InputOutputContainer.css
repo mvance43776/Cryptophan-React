@@ -1,0 +1,186 @@
+.input-output-container {
+    display: flex;
+    width: 100%;
+}
+
+.input-container {
+    display: flex;
+    flex: 1;
+    width: 50%;
+    align-items: center;
+    padding: 0 20px;
+    margin: 0 0px;
+    background-color: #1aaaba;
+}
+
+    .input-container h2 {
+        margin: 0 20px 20px 20px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 32px;
+        font-weight: 100;
+        color: #eee;
+        border-bottom: 1px solid #eee;
+    }
+
+.coinCompare{
+    flex: 1;
+}
+
+.coinEntry {
+    border: none;
+    border-bottom: white solid 1px;
+    padding: 15px 14px 15px 26px;
+    margin: 0 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+    flex: 2;
+    width: 75%;
+    text-transform: uppercase;
+}
+
+    .coinEntry::placeholder {
+        color: rgba(255, 255, 255, 0.75);
+        text-transform: none;
+    }
+
+    .coinEntry:focus {
+        outline: none;
+    }
+
+
+#denom-choices {
+    border: none;
+    border-bottom: white solid 1px;
+    padding: 15px 14px 15px 26px;
+    margin: 0px 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+    flex: 2;
+    width: 90%;
+}
+
+#denom-choices:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+    #denom-choices option {
+        color: #333;
+        background: rgba(20, 100, 125, 0.75);
+    }
+
+.submit {
+    flex: 0.5;
+    height: 50px;
+    margin: 20px 0px;
+    padding: 10px 20px 10px 20px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+    .submit:hover {
+        background-color: #ddd;
+        border-color: #ddd;
+        color: #1aaaba;
+    }
+
+    .submit:focus{
+        outline: none;
+    }
+
+.output-container {
+    display: flex;
+    flex: 1;
+    padding: 0 20px;
+    background-color: rgb(20, 100, 125);
+    color: white;
+    align-items: center;
+    margin: 0 0px;
+}
+
+    .output-container h2 {
+        margin: 0 auto 20px auto;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 32px;
+        font-weight: 100;
+        color: white;
+        border-bottom: 1px solid white;
+        text-align: center;
+    }
+
+.data-container {
+    display: flex;
+    align-items: center;
+}
+
+#dateEntry1, #dateEntry2, #dateEntry3 {
+    display: none;
+}
+
+.currentPrice-container {
+    flex: 5;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 50px;
+    padding: 15px 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 24px;
+}
+
+.currentPriceOutput {
+    margin-right: 20px;
+}
+
+@media screen and (max-width: 1540px) {
+
+    .input-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .coinCompare{
+        width: 50%;
+    }
+
+    #denom-choices {
+        width: 96%;
+    }
+
+    .output-container {
+        flex-direction: column;
+    }
+
+    .currentPrice-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 0 0px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 680px) {
+*{
+    padding: 0;
+    margin: 0;
+}
+    .input-output-container {
+        flex-direction: column;
+    }
+
+    .input-container {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .output-container {
+        padding-left: 0;
+        width: 100%;
+    }
+}

@@ -4,11 +4,11 @@ import './Pageheader.css';
 
 class Pageheader extends Component {
 
-	
+    
   render() {
     return (
        <div className="header">
-            <div className="date-all">
+            <div className="date-container">
                 <div className="circle-num">
                     <div className="circle">
                         <p className="date-num"></p>
@@ -18,7 +18,7 @@ class Pageheader extends Component {
                     <p className="date-info"></p>
                 </div>
             </div>
-            <div className="main-title">Crypto<span className="title">phan</span></div>
+            <div className="title">Crypto<span className="title-suffix">phan</span></div>
             <div className="nav">
                 <ul>
                     <li className="nav-price">Price</li>
