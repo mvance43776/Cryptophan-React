@@ -15,7 +15,9 @@ handleSubmit() {
     let coinDenominator = document.querySelector("#denom-choices").value.toUpperCase();
     let unixTime = Math.round(Date.now()/1000, 1);
     this.props.getHistoricalPriceData(coinNumerator, coinDenominator, unixTime);
-}
+    this.props.getCurrentPriceData(coinNumerator, coinDenominator, unixTime);
+    console.log(this.props.currentPrice + 'trial')
+  }
     
   render() {
     return (
@@ -52,7 +54,7 @@ handleSubmit() {
                     <h2>Outputs</h2>
                     <div className="currentPrice-container data-container">
                         <div className="currentPriceOutput">
-                            Current Price:
+                            Current Price: {this.props.currentPrice + " " + this.props.coinDenominator}
                         </div>
                         <br/>
                         <div className="allTimeHighPriceOutput">

@@ -10,10 +10,15 @@ class App extends Component {
 
     this.state = {
       currentDate: "",
+      coinNumerator: "", 
+      coinDenominator: "",
+      currentPrice: "",
     }
 
     this.getHistoricalPriceData = this.getHistoricalPriceData.bind(this);
     this.analyzeHistoricalPriceData = this.analyzeHistoricalPriceData.bind(this);
+    this.getCurrentPriceData = this.getCurrentPriceData.bind(this);
+    this.analyzeCurrentPriceData = this.analyzeCurrentPriceData.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +36,7 @@ class App extends Component {
   }
 
   getHistoricalPriceData(coinNumerator, coinDenominator, unixTime) {
+    this.setState({coinNumerator: coinNumerator, coinDenominator: coinDenominator})
     let historicalData = "";
     $.ajax({
         type: 'GET',
@@ -44,10 +50,30 @@ class App extends Component {
         dataType: 'json', 
         success: this.analyzeHistoricalPriceData, 
     });
+  }
+
+  getCurrentPriceData(coinNumerator, coinDenominator, unixTime) {
+    $.ajax({
+        type: 'GET',
+        url: "https://min-api.cryptocompare.com/data/price?fsym=" +
+        coinNumerator +
+        "&tsyms=" +
+        coinDenominator,
+        data: '',
+        dataType: 'json', 
+        success: this.analyzeCurrentPriceData, 
+    });
 }
+  
 
   analyzeHistoricalPriceData(data) {
         console.log(data.Data[2000].close);
+  }
+
+  analyzeCurrentPriceData(data) {
+    let currentPrice = data[this.state.coinDenominator];
+    console.log('CurrentPrice: ' + currentPrice);
+    this.setState({currentPrice: currentPrice})
   }
 
   getMonth(month) {
@@ -180,7 +206,11 @@ class App extends Component {
         <Pageheader />
         <InputOutputContainer 
           getHistoricalPriceData = {this.getHistoricalPriceData}
+          getCurrentPriceData = {this.getCurrentPriceData}
           currentDate = {this.state.currentDate}
+          currentPrice = {this.state.currentPrice}
+          coinNumerator = {this.state.coinNumerator}
+          coinDenominator = {this.state.coinDenominator}
         />
       </div>
     );
